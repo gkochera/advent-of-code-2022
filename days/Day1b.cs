@@ -2,8 +2,9 @@ class Day1b {
     private int currentTotal = 0;
     private int[] maxTotals = {0, 0, 0};
     public void Run() {
-        var numbers = Utility.LoadDataIntoArray("./inputs/Day1/Day1.txt");
-
+        var lines = Utility.LoadFromFile("./inputs/Day1/Day1.txt");
+        var numbers = Utility.ConvertToStringList(lines);
+        
         for (int j = 0; j < numbers.Count; j++)
         {
             if (string.IsNullOrEmpty(numbers[j]))

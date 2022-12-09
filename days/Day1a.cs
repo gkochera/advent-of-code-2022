@@ -1,6 +1,8 @@
 class Day1a {
     public static void Run() {
-        var numbers = Utility.LoadDataIntoArray("./inputs/Day1/Day1.txt");
+        var lines = Utility.LoadFromFile("./inputs/Day1/Day1.txt");
+        var numbers = Utility.ConvertToStringList(lines);
+    
         var currentTotal = 0;
         var maxTotal = 0;
 
