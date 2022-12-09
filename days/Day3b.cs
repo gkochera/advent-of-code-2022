@@ -1,32 +1,40 @@
-public class Day3a : IDay
+public class Day3b : IDay
 {
     int total = 0;
     public void Run()
     {
         var lines = Utility.LoadFromFile("./inputs/Day3/Day3.txt");
-        foreach (var line in lines)
+        var lineCount = lines.Count();
+
+        for(int i = 0; i < lineCount - 2; i += 3)
         {
-            int length = line.Count();
-            char[] firstHalf = line.Substring(0, (length / 2)).ToCharArray();
-            char[] secondHalf = line.Substring(length / 2).ToCharArray();
-            char common = FindCommonLetter(firstHalf, secondHalf);
+            char[] lineOne = lines[i].ToCharArray();
+            char[] lineTwo = lines[i+1].ToCharArray();
+            char[] lineThree = lines[i+2].ToCharArray();
+            
+            char common = FindCommonLetter(lineOne, lineTwo, lineThree);
             total += ScoreLetter(common);
         }
+        
         Console.WriteLine($"Total: {total}");
     }
 
-    private char FindCommonLetter(char[] first, char[] second)
+    private char FindCommonLetter(char[] first, char[] second, char[] third)
     {
         int firstLength = first.Count();
         int secondLength = second.Count();
+        int thirdLength = third.Count();
 
         for (int i = 0; i < firstLength; i++)
         {
             for (int j = 0; j < secondLength; j++)
             {
-                if (first[i] == second[j])
+                for (int k = 0; k < thirdLength; k++)
                 {
-                    return first[i];
+                    if (first[i] == second[j] && second[j] == third[k])
+                    {
+                        return first[i];
+                    }
                 }
             }
         }
